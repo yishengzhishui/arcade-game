@@ -8,7 +8,7 @@ var Enemy = function(y) {
   this.sprite = 'images/enemy-bug.png';
   this.x = -50;
   this.y = y;
-  this.speed = 20 + Math.random() * 80; //Math.random() 生成0～1随机数
+  this.speed = 20 + Math.random() * 100; //Math.random() 生成0～1随机数
 };
 
 // Update the enemy's position, required method for game
@@ -18,6 +18,11 @@ Enemy.prototype.update = function(dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
   this.x += this.speed * dt;
+  if (this.x > 600) {
+    this.x = -50;
+    this.speed = 20 + Math.random() * 100;
+    this.y = (60 + Math.floor(Math.random() * 3) * 83)
+  };
 
 };
 
@@ -31,9 +36,8 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
   this.sprite = 'images/char-boy.png';
-  this.x = 250;
-  this.y = 350;
-  this.speed = 25;
+  this.x = 200;
+  this.y = 380;
 };
 
 Player.prototype.render = function() {
@@ -43,33 +47,45 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(allowedKeys) {
   switch (allowedKeys) {
     case 'left':
-      this.x -= 30;
+      this.x -= 100;
       break;
     case 'right':
-      this.x += 30;
+      this.x += 100;
       break;
     case 'up':
-      this.y -= 30;
+      this.y -= 80;
       break;
     case 'down':
-      this.y += 30;
+      this.y += 80;
   }
 };
 
-Player.prototype.update = function(dt) {
-
+Player.prototype.update = function() {
+  //checkout distance between enemy and player
+  for (let i = 0; i < allEnemies.length; i++) {
+    if ((Math.abs(this.y - allEnemies[i].y)) < 40) {
+      if ((Math.abs(this.x - allEnemies[i].x)) < 40) {
+        this.x = 200;
+        this.y = 380;
+      }
+    }
+  };
+  if (this.y < -10) {
+    this.x = 200;
+    this.y = 380;
+  };
 };
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-for (var i = 0; i < 5; i++) {
-  var enemy = new Enemy(Math.floor(Math.random() * 3) * 80);
+for (var i = 0; i < 6; i++) {
+  var enemy = new Enemy(60 + Math.floor(Math.random() * 3) * 83);
   allEnemies.push(enemy);
 }
 var player = new Player();
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
