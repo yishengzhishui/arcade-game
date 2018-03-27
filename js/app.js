@@ -70,9 +70,20 @@ Player.prototype.update = function() {
       }
     }
   };
+  //success
   if (this.y < -10) {
     this.x = 200;
     this.y = 380;
+  };
+  //the border
+  if (this.y > 500) {
+    this.y = 380
+  };
+  if (this.x > 400) {
+    this.x = 400
+  };
+  if (this.x < 0) {
+    this.x = 0
   };
 };
 
