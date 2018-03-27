@@ -21,7 +21,7 @@ Enemy.prototype.update = function(dt) {
   if (this.x > 600) {
     this.x = -50;
     this.speed = 20 + Math.random() * 100;
-    this.y = (60 + Math.floor(Math.random() * 3) * 83)
+    this.y = (60 + Math.floor(Math.random() * 3) * 83);
   };
 
 };
@@ -57,7 +57,7 @@ Player.prototype.handleInput = function(allowedKeys) {
       break;
     case 'down':
       this.y += 80;
-  }
+  };
 };
 
 Player.prototype.update = function() {
@@ -67,8 +67,8 @@ Player.prototype.update = function() {
       if ((Math.abs(this.x - allEnemies[i].x)) < 40) {
         this.x = 200;
         this.y = 380;
-      }
-    }
+      };
+    };
   };
   //success
   if (this.y < -10) {
@@ -77,13 +77,13 @@ Player.prototype.update = function() {
   };
   //the border
   if (this.y > 500) {
-    this.y = 380
+    this.y = 380;
   };
   if (this.x > 400) {
-    this.x = 400
+    this.x = 400;
   };
   if (this.x < 0) {
-    this.x = 0
+    this.x = 0;
   };
 };
 
@@ -95,7 +95,7 @@ var allEnemies = [];
 for (var i = 0; i < 6; i++) {
   var enemy = new Enemy(60 + Math.floor(Math.random() * 3) * 83);
   allEnemies.push(enemy);
-}
+};
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
