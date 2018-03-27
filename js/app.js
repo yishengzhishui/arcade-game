@@ -55,16 +55,18 @@ Player.prototype.handleInput = function(allowedKeys) {
       this.y += 30;
   }
 };
+
+Player.prototype.update = function(dt) {
+
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-for (var i = 0; i < 6; i++) {
-  //Math.floor()返回一个表示小于或等于指定数字的最大整数的数字。
-  var enemy = new Enemy(Math.floor(Math.random() * 4) * 80);
+for (var i = 0; i < 5; i++) {
+  var enemy = new Enemy(Math.floor(Math.random() * 3) * 80);
   allEnemies.push(enemy);
-};
-
+}
 var player = new Player();
 
 
