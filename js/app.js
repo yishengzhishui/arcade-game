@@ -34,10 +34,15 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+const TILE_WIDTH = 100;
+const TILE_HEIGHT = 80;
+const PLAYER_X = 200;
+const PLAYER_y = 380;
+
 var Player = function() {
   this.sprite = 'images/char-boy.png';
-  this.x = 200;
-  this.y = 380;
+  this.x = PLAYER_X;
+  this.y = PLAYER_Y;
 };
 
 Player.prototype.render = function() {
@@ -47,16 +52,16 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(allowedKeys) {
   switch (allowedKeys) {
     case 'left':
-      this.x -= 100;
+      this.x -= TILE_WIDTH;
       break;
     case 'right':
-      this.x += 100;
+      this.x += TILE_WIDTH;
       break;
     case 'up':
-      this.y -= 80;
+      this.y -= TILE_HEIGHT;
       break;
     case 'down':
-      this.y += 80;
+      this.y += TILE_HEIGHT;
   };
 };
 
@@ -65,19 +70,19 @@ Player.prototype.update = function() {
   for (let i = 0; i < allEnemies.length; i++) {
     if ((Math.abs(this.y - allEnemies[i].y)) < 40) {
       if ((Math.abs(this.x - allEnemies[i].x)) < 40) {
-        this.x = 200;
-        this.y = 380;
+        this.x = PLAYER_X;
+        this.y = PLAYER_Y;
       };
     };
   };
   //success
   if (this.y < -10) {
-    this.x = 200;
-    this.y = 380;
+    this.x = PLAYER_X;
+    this.y = PLAYER_Y;
   };
   //the border
   if (this.y > 500) {
-    this.y = 380;
+    this.y = PLAYER_Y;
   };
   if (this.x > 400) {
     this.x = 400;
