@@ -36,13 +36,11 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 const TILE_WIDTH = 100;
 const TILE_HEIGHT = 80;
-const PLAYER_X = 200;
-const PLAYER_y = 380;
 
 var Player = function() {
   this.sprite = 'images/char-boy.png';
-  this.x = PLAYER_X;
-  this.y = PLAYER_Y;
+  this.x = 200;
+  this.y = 380;
 };
 
 Player.prototype.render = function() {
@@ -69,20 +67,20 @@ Player.prototype.update = function() {
   //checkout distance between enemy and player
   for (let i = 0; i < allEnemies.length; i++) {
     if ((Math.abs(this.y - allEnemies[i].y)) < 40) {
-      if ((Math.abs(this.x - allEnemies[i].x)) < 40) {
-        this.x = PLAYER_X;
-        this.y = PLAYER_Y;
+      if ((Math.abs(this.x - allEnemies[i].x)) < 55) {
+        this.x = 200;
+        this.y = 380;
       };
     };
   };
   //success
   if (this.y < -10) {
-    this.x = PLAYER_X;
-    this.y = PLAYER_Y;
+    this.x = 200;
+    this.y = 380;
   };
   //the border
   if (this.y > 500) {
-    this.y = PLAYER_Y;
+    this.y = 380;
   };
   if (this.x > 400) {
     this.x = 400;
